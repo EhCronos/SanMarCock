@@ -695,7 +695,7 @@ boton_Listo.addEventListener('click', async function(event) {
         menu_Musica.pause();
         cargando.classList.remove("cargando_Ocultar");
         ok.classList.add("ok_Ocultar");
-        await awanta_bara(1000)
+        await awanta_bara(10000)
         inicio_Mapa();
     }
 });
