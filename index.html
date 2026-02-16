@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SanMarCock</title>
+    <link rel="stylesheet" href="estilo.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body id="body">
+    <audio id="menu_Musica" src="assets/mp3/menu.mp3"></audio>
+    <audio id="mapa_Musica" src="assets/mp3/mapa.mp3"></audio>
+    <audio id="animal_Pop" src="assets/mp3/pop.mp3"></audio>
+    <audio id="enter_Sonido" src="assets/mp3/enter.mp3"></audio>
+    <audio id="pickup_Your_Partner" src="assets/mp3/pickupyourpartner.mp3"></audio>
+    <audio id="ok_Sonido" src="assets/mp3/ok.mp3"></audio>
+    <audio id="intro" src="assets/mp3/intro.mp3"></audio>
+    <audio id="explosion" src="assets/mp3/explosion.mp3"></audio>
+    <audio id="pickup" src="assets/mp3/pickup.mp3"></audio>
+    <audio id="error_Sonido" src="assets/mp3/error.mp3"></audio>
+    <audio id="combate_Musica1" src="assets/mp3/combate1.mp3"></audio>
+    <audio id="combate_Musica2" src="assets/mp3/combate2.mp3"></audio>
+    <audio id="combate_Musica3" src="assets/mp3/combate3.mp3"></audio>
+    <audio id="chingadazo" src="assets/mp3/chingadazo.mp3"></audio>
+    <audio id="grito" src="assets/mp3/grito.mp3"></audio>
+    <audio id="derrota" src="assets/mp3/derrota.mp3"></audio>
+    <audio id="victoria" src="assets/mp3/victoria.mp3"></audio>
+    <audio id="kaiser_Musica" src="assets/mp3/kaiser.mp3"></audio>
+    <audio id="liberado" src="assets/mp3/liberado.mp3"></audio>
+    <audio id="atrapado" src="assets/mp3/atrapado.mp3"></audio>
+    <audio id="final" src="assets/mp3/final.mp3"></audio>
+    <audio id="tenkiu" src="assets/mp3/tenkiu.mp3"></audio>
+    <div>
+        <h5 id="mensaje1" class="mensaje1E">
+            Sientes una presencia muy antigua frente a ti...
+        </h5>
+        <h4 id="mensaje2" class="mensaje2E">
+            Intentas correr pero no avanzas...
+        </h4>
+        <h3 id="mensaje3" class="mensaje3E">
+            Intentas gritar pero nadie te escucha...
+        </h3>
+        <h2 id=mensaje4 class="mensaje4E">
+            NO HAY ESCAPE!!!
+        </h2>
+    </div>
+    <div class="titulo">
+        <img src="assets/img/San.png" class="ocultar_san_Letra" id="san_Letra" alt="san">
+        <img src="assets/img/Mar.png" class="ocultar_mar_Letra" id="mar_Letra" alt="mar">
+        <img src="assets/img/Cock.png" class="ocultar_cock_Letra" id="cock_Letra" alt="cock">
+    </div>
+    <div class="carg">
+    <section id="descanso" class="descanso_Estilo">
+    </section>
+    <img src="assets/img/ojo.gif" class="ojo_Estilo" id= "ojo" alt="ojo">
+    <img src="assets/img/cargando.gif" class="cargando_Ocultar" id="cargando" alt="cargando">
+    <img src="assets/img/ok.gif" class="ok_Ocultar" id="ok" alt="ok" >
+    </div>
+    <section id="menu_Trampa" style="font-size: 30px; background-color: black; color: white; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;">
+        <div class="pantalla_Negra">
+            <p>Haz <strong>CLICK</strong> para comenzar</p> 
+        </div>
+    </section>
+    <section id="menu_Seleccion">
+        <div id='contenedor_Animal' class="seleccion_Animal">
+            <label class="menu_Seleccion_Subtitulo">
+                <h1 class="Subtitulo">Elige a tu Alebrije 🧚💩⚡</h1>
+            </label>
+            <input type="radio" name="animal" id="furro" value=0 onclick="animal_Seleccionado(this.value)">
+            <label class="animal_Label" for ="furro">
+                <div class="animacion_Inversa">
+                    <img src="assets/img/furro.png" width="200" id="furro_Imagen" height="200" alt="furro">
+                </div>
+            </label>
+            <input type="radio" name="animal" id="nik" value=1 onclick="animal_Seleccionado(this.value)">
+            <label class="animal_Label" for ="nik">
+                <div class="animacion_Inversa">
+                    <img src="assets/img/nik.png" width="200" id="nik_Imagen" height="200" alt="nik">
+                </div>
+            </label>
+            <input type="radio" name="animal" id="chispa" value=2 onclick="animal_Seleccionado(this.value)">
+            <label class="animal_Label" for ="chispa">
+                <div class="animacion_Inversa">
+                    <img src="assets/img/chispa.png" width="200" id="chispa_Imagen" height="200" alt="chispa">
+                </div>
+            </label>
+        </div>
+        <button class="boton_Listo" id="boton_Listo">Estoy listo pa los madrasos</button>
+    </section>
+    <section id="menu_Mapa">
+        <img src="assets/img/mapa.png" alt="mapa" class="menu_Mapa_Background">
+    </section>
+    <section id="menu_Madrasos">
+        <div id="transicion">
+        <div class="bloque izquierda"></div>
+        <div class="bloque derecha"></div>
+        </div>
+        <img src="assets/img/Madrasos.png" id="menu_Madrasos_Background" class="menu_Madrasos_Background" alt="Madrasos">
+        <img src="assets/img/victoria.gif" id="victoria_Img" class="victoria_Imagen" alt="Madrasos">
+        <label id="contenedor_Ataques" class="contenedor_Ataques">
+            <p id="anuncio">Texto</p>
+            <button id="boton_Hada" class="boton_HadaE">Ataque 🧚</button>
+            <button id="boton_Caca" class="boton_CacaE">Ataque 💩</button>
+            <button id="boton_Electrico" class="boton_ElectricoE">Ataque ⚡</button>
+        </label>
+        <label id="vida_Jugador" class="contenedor_Bueno">
+            <p id="nombre_Bueno">Nombre</p>
+            <div id="vida_Bueno" class="vida_Bueno"></div>
+        </label>
+        <label id="vida_Enemigo" class="contenedor_Malo">
+            <p id="nombre_Malo">Nombre</p>
+            <div id="vida_Malo" class="vida_Malo"></div>
+        </label>
+    </section>
+    <section id="kaiser_Batalla" class="termina_Background">
+        <img src="assets/img/kaiser.png" class="kaiser" id="kaiser_Imagen" alt="kaiser">
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

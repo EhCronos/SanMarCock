@@ -1,0 +1,600 @@
+/* Menu Principal ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: black;
+}
+
+.kaiser_Idle {
+    display: inline-block;
+    transform-origin: bottom center;
+    animation: kaiser_Idle 5s ease-in-out infinite alternate;
+}
+
+.descanso_Estilo {
+    width: 100%;
+    height: 100vh;
+    background-image: url('assets/img/descanso.webp');
+    background-size: cover;
+    z-index: 0;
+    display: none;
+}
+
+@keyframes kaiser_Idle {
+    0%, 100% {
+    transform: translateY(0) scale(1.03, 0.94);
+    filter: brightness(0.9) contrast(1.2) drop-shadow(0 0 10px rgba(184, 134, 11, 0.3));
+    }
+    50% {
+    transform: translateY(-15px) scale(1, 1);
+    filter: brightness(1.2) contrast(1.5) drop-shadow(0 0 35px rgba(218, 165, 32, 0.8));
+    }
+}
+
+.kaiser {
+    position: absolute;
+    height: 700px;
+    width: 400px;
+    display: none;
+    top: 5%;
+    right: 25%;
+}
+
+.ojo_Estilo {
+    width: 80px;
+    height: 80px;
+    display: none;
+}
+
+.termina_Background {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('assets/img/termina.gif');
+    background-size: cover;
+    z-index: 0;
+    display: none;
+}
+
+.menu_Mapa_Background {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.menu_Madrasos_Background {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.contenedor_Ataques {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    margin-top: 0%;
+    z-index: 2;
+    background-color: #222;
+    color: white;
+    border: 4px solid #fff;
+    border-radius: 5px;
+    padding: 20px 40px;
+    font-family: 'Courier New', Courier, monospace;
+    z-index: 9;
+}
+
+
+.titulo {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.ok_Ocultar {
+    display: none;
+}
+
+.cargando_Ocultar {
+    display: none;
+}
+
+.menu_Seleccion_Subtitulo {
+    color: white;
+    font-size: 20px;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+.carg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+}
+
+input {
+    display: none;
+}
+
+.ocultar_san_Letra {
+    display: none;
+}
+
+.ocultar_mar_Letra {
+    display: none;
+}
+
+.ocultar_cock_Letra {
+    display: none;
+}
+
+
+.animal_Label {
+  width: 300px;
+  height: 300px;
+  background: rgb(255, 255, 255);
+  padding: 100px;
+  box-sizing: border-box;
+  border-radius: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  animation: girar 3s linear infinite;
+}
+
+.seleccion_Animal {
+    position: fixed;
+    color: white;
+    font-size: 20px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.boton_HadaE {
+  background: rgb(255, 114, 161);
+}
+
+.boton_CacaE {
+  background: rgb(110, 49, 25);
+}
+
+.boton_ElectricoE {
+  background: #feca57;
+  color: rgb(0, 0, 0);
+}
+
+.boton_Listo {
+    background-color: rgb(255, 204, 0);
+    color: #1b263b;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.2rem;
+    padding: 12px 24px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-color: transparent;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.seleccion_Animal, .contenedor_Animal {
+  display: flex;
+  gap: 60px;
+  padding: 70px;
+}
+
+.animacion_Inversa {
+    cursor: pointer;
+    animation: giroInverso 3s linear infinite;
+}
+
+.animal_Label:hover {
+    animation: flotar 0.6s ease-in-out infinite alternate;
+    background: rgb(123, 184, 255);
+}
+
+input:checked + .animal_Label {
+    border-radius: 130PX;
+    background: rgb(255, 204, 0);
+}
+
+.animal_Label:hover .animacion_Inversa {
+    animation: flotar 0.6s ease-in-out infinite alternate;
+}
+
+
+@keyframes giroInverso {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+}
+
+@keyframes girar {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes flotar {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    100% {
+        transform: translateY(-10px) scale(1.1);
+    }
+}
+
+@keyframes ok_cayendo {
+    0% {
+        transform: translateY(-200px) scale(7);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes letras_cayendo {
+    0% {
+        transform: translateY(700px) scale(10);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.personaje_Idle {
+    display: inline-block;
+    transform-origin: bottom center;
+    animation: personaje_Idle 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes personaje_Idle {
+    0% {
+        transform: scale(1, 1) translateY(0);
+    }
+    100% {
+        transform: scale(1.05, 0.94) translateY(5px);
+    }
+}
+
+@keyframes movimiento_Menu {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    10% { transform: scale(1.2, 0.8) translateY(0); }
+    20% { transform: scale(0.8, 1.3) translateY(-50px) rotate(5deg); }
+    30% { transform: scale(1) translateY(0) skewX(15deg); }
+    40% { transform: scale(1) skewX(-15deg) rotate(-10deg); }
+    50% { transform: scale(1.1) skewY(10deg) rotate(10deg); }
+    60% { transform: translateX(-20px) rotate(-15deg); }
+    70% { transform: translateX(20px) rotate(15deg); }
+    80% { transform: translateX(-10px) rotate(-5deg) scale(1.2); }
+    90% { transform: scale(0.9, 1.1) translateY(0); }
+}
+
+
+
+@keyframes mov_W {
+    /* Viene desde un nodo abajo (+11.11%) hacia su nueva posición (0) */
+    0% { transform: translateY(11.11vh) scaleY(1.3); } 
+    30% { transform: translateY(-2vh) scaleY(0.7); }
+    100% { transform: translateY(0) scaleY(1); }
+}
+
+@keyframes mov_S {
+    /* Viene desde un nodo arriba (-11.11%) hacia su nueva posición (0) */
+    0% { transform: translateY(-11.11vh) scaleY(1.3); }
+    30% { transform: translateY(2vh) scaleY(0.7); }
+    100% { transform: translateY(0) scaleY(1); }
+}
+
+@keyframes mov_A {
+    /* Viene desde la derecha (+5.26%) */
+    0% { transform: translateX(5.26vw) scaleX(1.2); }
+    30% { transform: translateX(-1vw) scaleX(0.9); }
+    100% { transform: translateX(0) scaleX(1); }
+}
+
+@keyframes mov_D {
+    /* Viene desde la izquierda (-5.26%) */
+    0% { transform: translateX(-5.26vw) scaleX(1.2); }
+    30% { transform: translateX(1vw) scaleX(0.9); }
+    100% { transform: translateX(0) scaleX(1); }
+}
+
+.mov_W {
+    animation: mov_W 0.5s ease-out forwards;
+}
+.mov_A {
+    animation: mov_A 0.5s ease-out forwards;
+}
+.mov_S {
+    animation: mov_S 0.5s ease-out forwards;
+}
+.mov_D {
+    animation: mov_D 0.5s ease-out forwards;
+}
+
+
+.movimiento_Vivo {
+  animation: movimiento_Menu 4s ease-in-out infinite;
+}
+
+.caida_Letras {
+  animation: letras_cayendo 0.5s ease-out forwards;
+}
+
+.caida_Ok {
+  animation: ok_cayendo 0.3s linear forwards;
+}
+
+/* Transicion y Combate -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+.vida_Bueno {
+    position: absolute;
+    height: 60%;
+    width: 60%;
+    right: 5%;
+    z-index: 2;
+    background-color:rgb(91, 228, 120);
+    z-index: 11;
+}
+
+.contenedor_Bueno {
+    align-items: center;
+    position: fixed;
+    height: 25px;
+    display: flex;
+    position: absolute;
+    bottom: 10%; right: 10%;
+    width: 350px; height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 10;
+}
+
+.vida_Malo {
+    position: absolute;
+    height: 60%;
+    width: 60%;
+    right: 5%;
+    z-index: 2;
+    background-color:rgb(91, 228, 120);
+    z-index: 11;
+}
+
+.contenedor_Malo {
+    align-items: center;
+    position: fixed;
+    height: 25px;
+    display: flex;
+    position: absolute;
+    top: 10%; left: 10%;
+    width: 350px; height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 10;
+}
+
+.victoria_Imagen {
+    cursor: pointer;
+    position: fixed;
+    width: 500px;
+    height: 300px;
+    top: 20%;
+    right: 20%;
+    z-index: 10;
+    display: none;
+}
+
+.desvanecer {
+  animation: desvanecer 3s ease-out forwards;
+}
+
+.desvanecer {
+  animation: desvanecer 1s ease-out forwards;
+}
+
+@keyframes desvanecer {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.chingadazo {
+    animation: chingadazo 2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes chingadazo {
+    0% { 
+        transform: translate(0, 0);
+        filter: brightness(1) contrast(1);
+    }
+    5%  { transform: translate(-1px, 2px); }
+    10% { transform: translate(2px, -1px); }
+    15% { transform: translate(-2px, -2px); }
+    20% { transform: translate(1px, 2px); }
+    25% { transform: translate(-2px, 1px); }
+    30% { transform: translate(2px, 2px); }
+    35% { transform: translate(-1px, -2px); }
+    40% { transform: translate(2px, -1px); }
+    45% { transform: translate(-2px, 2px); }
+    50% { 
+        transform: translate(0, 0);
+        filter: brightness(1) contrast(1.2);
+    }
+    65% {
+        transform: scaleX(1.05) scaleY(0.85) translateY(5px);
+        filter: brightness(0.4) contrast(1.5) grayscale(0.3);
+    }
+    85% {
+        transform: scaleX(1.02) scaleY(0.95) translateY(2px);
+        filter: brightness(0.8) contrast(1.2);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        filter: brightness(1) contrast(1);
+    }
+}
+
+#transicion {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.bloque {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+}
+
+.izquierda {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.derecha {
+    right: 0;
+    transform: translateX(100%);
+}
+
+.abrir .izquierda {
+    animation: abrirIzq 4s ease forwards;
+}
+
+.abrir .derecha {
+    animation: abrirDer 4s ease forwards;
+}
+
+@keyframes abrirIzq {
+    0%   { transform: translateX(0%); }
+    25%  { transform: translateX(0%); }
+    75%  { transform: translateX(-40%); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes abrirDer {
+    0%   { transform: translateX(0%); }
+    25%  { transform: translateX(0%); }
+    75%  { transform: translateX(40%); }
+    100% { transform: translateX(100%); }
+}
+
+
+.imagen_Zoom {
+  animation: impulso-y-zoom 2s ease-in-out forwards;
+}
+
+@keyframes impulso-y-zoom {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(0.8);
+    filter: brightness(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10); 
+    filter: brightness(0);
+    opacity: 0;
+    display: none;
+  }
+}
+
+.mensaje1E, .mensaje2E, .mensaje3E {
+    color: rgb(255, 255, 255);
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    position: fixed;
+    display: none;
+}
+
+.mensaje1E {
+    top: 30%;
+    left: 50%;
+}
+
+.mensaje2E {
+    top: 40%;
+    left: 50%;
+}
+
+.mensaje3E {
+    top: 50%;
+    left: 50%;
+}
+
+.mensaje4E {
+    color: rgb(255, 0, 0);
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    position: fixed;
+    display: none;
+}
+
+.aparecer {
+    animation: aparecer 2s ease-out forwards;
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: scale(1);
+    }
+}
+
+.erratico {
+    animation: erratico 0.3s infinite alternate;
+}
+
+@keyframes erratico {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    10% { transform: translate(-5px, -2px) rotate(-1deg); }
+    20% { transform: translate(3px, 5px) rotate(1deg); }
+    30% { transform: translate(-5px, 2px) rotate(0deg); }
+    40% { transform: translate(2px, -3px) rotate(1deg); }
+    50% { transform: translate(-1px, 4px) rotate(-1deg); }
+    60% { transform: translate(-4px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 3px) rotate(-1deg); }
+    80% { transform: translate(-2px, -4px) rotate(1deg); }
+    90% { transform: translate(5px, 2px) rotate(0deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
