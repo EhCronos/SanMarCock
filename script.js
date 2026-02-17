@@ -300,7 +300,7 @@ async function ganar() {
     await awanta_bara(3200);
     kaiser_Batalla.style.display = 'none'
     animal_Select.imagen.classList.remove("personaje_Idle");
-    animal_Select.imagen.classList.remove("descanso_Idle");
+    animal_Select.imagen.classList.add("descanso_Idle");
     animal_Select.posx = 8
     dibujar_Animal()
     await awanta_bara(6000);
