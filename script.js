@@ -243,8 +243,10 @@ async function inicio_Mapa() {
 
 function evaluar_Vida() {
     if (animal_Enemigo.vida <= 0) {
+        combate_Activo = false;
         ganar()
     }else if (animal_Select.vida <= 0 ) {
+        combate_Activo = false;
         perder()
     }
 }
@@ -262,7 +264,6 @@ function reduccion_Vida(vida) {
 
 async function preparar_Reinicio() {
     await awanta_bara(2000);
-    combate_Activo = false;
     randomizar_Posicion();
     animal_Select.width = 5
     animal_Select.height = 10
@@ -270,6 +271,8 @@ async function preparar_Reinicio() {
     animal_Select.posy = ultima_Posy
     vida_Bueno.style.width = '60%'
     vida_Malo.style.width = '60%'
+    vida_Malo.style.backgroundColor = 'rgb(91, 228, 120)'
+    vida_Bueno.style.backgroundColor = 'rgb(91, 228, 120)'
     contenedor_Ataques.style.display = 'none'
     vida_Jugador.style.display = 'none'
     vida_Enemigo.style.display = 'none'
@@ -290,9 +293,6 @@ async function preparar_Reinicio() {
 
 async function ganar() {
     if (easter_egg == 0) {
-    boton_Hada.disabled = true;
-    boton_Caca.disabled = true;
-    boton_Electrico.disabled = true;
     kaiser_Musica.pause();
     kaiser_Musica.currentTime = 0; 
     liberado.play()
@@ -300,6 +300,7 @@ async function ganar() {
     await awanta_bara(3200);
     kaiser_Batalla.style.display = 'none'
     animal_Select.imagen.classList.remove("personaje_Idle");
+    animal_Select.imagen.classList.remove("descanso_Idle");
     animal_Select.posx = 8
     dibujar_Animal()
     await awanta_bara(6000);
@@ -308,9 +309,6 @@ async function ganar() {
     final.play()
     tenkiu.play()
     }else {
-    boton_Hada.disabled = true;
-    boton_Caca.disabled = true;
-    boton_Electrico.disabled = true;
     combate_Musica1.pause()
     combate_Musica2.pause()
     combate_Musica3.pause()
@@ -339,9 +337,6 @@ async function ganar() {
 
 async function perder() {
     if (easter_egg == 0) {
-    boton_Hada.disabled = true;
-    boton_Caca.disabled = true;
-    boton_Electrico.disabled = true;
     kaiser_Musica.pause();
     kaiser_Musica.currentTime = 0; 
     grito_Sonido.play()
@@ -354,9 +349,6 @@ async function perder() {
     await awanta_bara(2000);
     window.close();
     }else {
-    boton_Hada.disabled = true;
-    boton_Caca.disabled = true;
-    boton_Electrico.disabled = true;
     combate_Musica1.pause();
     combate_Musica2.pause();
     combate_Musica3.pause();
@@ -379,42 +371,41 @@ async function perder() {
     }
 }
 
-
 let kaiser_gana = false
 async function recibir_Daño(foto) {
-    if (easter_egg == 0 && kaiser_gana) {
-    chingadazo_Sonido.currentTime = 0; 
-    chingadazo_Sonido.play();
-    boton_Hada.disabled = true;
-    boton_Caca.disabled = true;
-    boton_Electrico.disabled = true;
-    
-    foto.classList.add("chingadazo");
-    await awanta_bara(1500);
-    foto.classList.remove("chingadazo");
-    foto.classList.add("personaje_Idle");
-    boton_Hada.disabled = false;
-    boton_Caca.disabled = false;
-    boton_Electrico.disabled = false;
-    kaiser_gana = false
-    evaluar_Vida()
-    }else {
+    if (easter_egg == 0) {
+        kaiser_gana = false
+    }
     chingadazo_Sonido.currentTime = 0; 
     chingadazo_Sonido.play();
     boton_Hada.disabled = true;
     boton_Caca.disabled = true;
     boton_Electrico.disabled = true;
     foto.classList.add("chingadazo");
-    await awanta_bara(1500);
+    await awanta_bara(300);
     foto.classList.remove("chingadazo");
-    boton_Hada.disabled = true;
-    boton_Caca.disabled = true;
-    boton_Electrico.disabled = true;
-    await awanta_bara(1000);
-    boton_Hada.disabled = false;
-    boton_Caca.disabled = false;
-    boton_Electrico.disabled = false;
     evaluar_Vida()
+    await awanta_bara(700);
+    if (combate_Activo == true) {
+        boton_Hada.disabled = false;
+        boton_Caca.disabled = false;
+        boton_Electrico.disabled = false;
+    }
+}
+
+function cambiar_Color_Malo(porcent) {
+ if (porcent <= 40 && porcent > 20 ) {
+    vida_Malo.style.backgroundColor = 'rgb(255, 240, 34)'
+ }else if (porcent < 20) {
+    vida_Malo.style.backgroundColor = 'rgb(201, 0, 0)'
+ }
+}
+
+function cambiar_Color_Bueno(porcent) {
+    if (porcent <= 40 && porcent > 20 ) {
+    vida_Bueno.style.backgroundColor = 'rgb(255, 240, 34)'
+    }else if (porcent < 20) {
+    vida_Bueno.style.backgroundColor = 'rgb(201, 0, 0)'
     }
 }
 
@@ -431,67 +422,79 @@ async function ataque(ataque_Jug, ataque_Ene) {
         boton_Caca.disabled = false;
         boton_Electrico.disabled = false;
     }
+    /*-----------------------------------------------*/
     if (ataque_Jug == 0 && ataque_Ene == 1) {
         animal_Enemigo.vida -= animal_Select.ataque_Hada
-        reduccion_Vida(animal_Enemigo.vida)
-        vida_Malo.style.width = porcentaje + '%'
         if(easter_egg == 0) {
             anuncio.textContent = "🧚 VS  𓋹 𓍹 𓎛 TU GANAS!!"
         }else {
             anuncio.textContent = "🧚 VS 💩 TU GANAS!!"
         }
+        reduccion_Vida(animal_Enemigo.vida)
+        vida_Malo.style.width = porcentaje + '%'
+        cambiar_Color_Malo(porcentaje)
         await recibir_Daño(animal_Enemigo.imagen)
+        /*-----------------------------------------------*/
     }else if (ataque_Jug == 0 && ataque_Ene == 2) {
         animal_Select.vida -= animal_Enemigo.ataque_Electrico
-        reduccion_Vida(animal_Select.vida)
-        vida_Bueno.style.width = porcentaje + '%'
         if(easter_egg == 0) {
             anuncio.textContent = "🧚 VS 𓂏 𓄿 𓆡 TU PIERDES!!"
             kaiser_gana = true
         }else {
             anuncio.textContent = "🧚 VS ⚡ TU PIERDES!!"
         }
-        await recibir_Daño(animal_Select.imagen)
-    }else if (ataque_Jug == 1 && ataque_Ene == 0) {
-        animal_Select.vida -= animal_Enemigo.ataque_Hada
         reduccion_Vida(animal_Select.vida)
         vida_Bueno.style.width = porcentaje + '%'
+        cambiar_Color_Bueno(porcentaje)
+        await recibir_Daño(animal_Select.imagen)
+        /*-----------------------------------------------*/
+    }else if (ataque_Jug == 1 && ataque_Ene == 0) {
+        animal_Select.vida -= animal_Enemigo.ataque_Hada
         if(easter_egg == 0) {
             anuncio.textContent = "💩 VS  𓃠 𓆈 𓅂 TU PIERDES!!"
             kaiser_gana = true
         }else {
             anuncio.textContent = "💩 VS 🧚 TU PIERDES!!"
         }
+        reduccion_Vida(animal_Select.vida)
+        vida_Bueno.style.width = porcentaje + '%'
+        cambiar_Color_Bueno(porcentaje)
         await recibir_Daño(animal_Select.imagen)
+        /*-----------------------------------------------*/
     }else if (ataque_Jug == 1 && ataque_Ene == 2) {
         animal_Enemigo.vida -= animal_Select.ataque_caca
-        reduccion_Vida(animal_Enemigo.vida)
-        vida_Malo.style.width = porcentaje + '%'
         if(easter_egg == 0) {
             anuncio.textContent = "💩 VS 𓂏 𓄿 𓆡 TU GANAS!!"
         }else {
             anuncio.textContent = "💩 VS ⚡ TU GANAS!!"
         }
-        await recibir_Daño(animal_Enemigo.imagen)
-    }else if (ataque_Jug == 2 && ataque_Ene == 0) {
-        animal_Enemigo.vida -= animal_Select.ataque_Electrico
         reduccion_Vida(animal_Enemigo.vida)
         vida_Malo.style.width = porcentaje + '%'
+        cambiar_Color_Malo(porcentaje)
+        await recibir_Daño(animal_Enemigo.imagen)
+        /*-----------------------------------------------*/
+    }else if (ataque_Jug == 2 && ataque_Ene == 0) {
+        animal_Enemigo.vida -= animal_Select.ataque_Electrico
         if(easter_egg == 0) {
             anuncio.textContent = "⚡ VS  𓃠 𓆈 𓅂 TU GANAS!!"
         }else {
             anuncio.textContent = "⚡ VS 🧚 TU GANAS!!"
         }
+        reduccion_Vida(animal_Enemigo.vida)
+        vida_Malo.style.width = porcentaje + '%'
+        cambiar_Color_Malo(porcentaje)
         await recibir_Daño(animal_Enemigo.imagen)
+        /*-----------------------------------------------*/
     }else if (ataque_Jug == 2 && ataque_Ene == 1) {
         animal_Select.vida -= animal_Enemigo.ataque_caca
-        reduccion_Vida(animal_Select.vida)
-        vida_Bueno.style.width = porcentaje + '%'
         if(easter_egg == 0) {
             anuncio.textContent = "⚡ VS  𓃠 𓆈 𓅂 TU PIERDES!!"
         }else {
             anuncio.textContent = "⚡ VS 💩 TU PIERDES!!"
         }
+        reduccion_Vida(animal_Select.vida)
+        vida_Bueno.style.width = porcentaje + '%'
+        cambiar_Color_Bueno(porcentaje)
         await recibir_Daño(animal_Select.imagen)
     }
 }
